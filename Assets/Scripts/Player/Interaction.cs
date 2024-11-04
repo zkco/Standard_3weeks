@@ -13,11 +13,11 @@ public class Interaction : MonoBehaviour
     public IInteractable curInteractable;
 
     public TextMeshProUGUI promptText;
-    private Camera camera;
+    private Camera _camera;
 
     private void Start()
     {
-        camera = Camera.main;
+        _camera = Camera.main;
     }
 
     private void Update()
@@ -26,7 +26,7 @@ public class Interaction : MonoBehaviour
         {
             lastCheckTime = Time.time;
 
-            Ray ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
+            Ray ray = _camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit, maxCheckDistance, layerMask))

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.XR;
 
 public class PlayerController : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 mouseDelta;
 
     public Action inventory;
+    public Action ClickToAttack;
     private Rigidbody _rigidbody;
 
     private void Awake()
@@ -89,6 +91,12 @@ public class PlayerController : MonoBehaviour
         {
             _rigidbody.AddForce(Vector2.up * jumpPower, ForceMode.Impulse);
         }
+    }
+
+    public void OnAttackInput(InputAction.CallbackContext context)
+    {
+        if(canLook)
+        ClickToAttack?.Invoke();
     }
 
     bool isGrounded()
